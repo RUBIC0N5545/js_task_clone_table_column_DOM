@@ -3,15 +3,17 @@
 function cloneCeil(elements) {
   const array = elements.map((el) => el.innerText);
 
-  return [...array.slice(0, -1), array[1], ...array.slice(-1)];
+  array.splice(-1, 0, array[1]);
+
+  return array;
 }
 
 function insertToDom(element, create) {
   const newElement = cloneCeil([...element.children]);
 
-  [...element.children].map((el) => el.remove());
+  [...element.children].forEach((el) => el.remove());
 
-  newElement.map((item) => {
+  newElement.forEach((item) => {
     const newItem = document.createElement(create);
 
     newItem.innerText = item;
